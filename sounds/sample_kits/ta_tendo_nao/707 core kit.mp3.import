@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bgn7si7iknrk4"
+path="res://.godot/imported/707 core kit.mp3-cc1790629b8fa2597b47f94b0aada39b.mp3str"
+
+[deps]
+
+source_file="res://sounds/sample_kits/ta_tendo_nao/707 core kit.mp3"
+dest_files=["res://.godot/imported/707 core kit.mp3-cc1790629b8fa2597b47f94b0aada39b.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=120.0
+beat_count=8
+bar_beats=4

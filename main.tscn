@@ -1,3 +1,28 @@
-[gd_scene format=3 uid="uid://jsyassicq3fn"]
+[gd_scene load_steps=8 format=3 uid="uid://jsyassicq3fn"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_eax1i"]
+[ext_resource type="AudioStream" uid="uid://bgn7si7iknrk4" path="res://sounds/sample_kits/ta_tendo_nao/707 core kit.mp3" id="2_0vjau"]
+[ext_resource type="AudioStream" uid="uid://ls75bx6vbg1j" path="res://sounds/sample_kits/ta_tendo_nao/canadian boards.mp3" id="3_7imnw"]
+[ext_resource type="AudioStream" uid="uid://bndbisfpttb0q" path="res://sounds/sample_kits/ta_tendo_nao/guitarrinha1.mp3" id="4_b4kh3"]
+[ext_resource type="AudioStream" uid="uid://dhrn4f5kub365" path="res://sounds/sample_kits/ta_tendo_nao/guitarrinha2.mp3" id="5_6glld"]
+[ext_resource type="AudioStream" uid="uid://j6gwpba2251i" path="res://sounds/sample_kits/ta_tendo_nao/suburban.mp3" id="6_ly0ej"]
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_egx2w"]
+stream_count = 5
+stream_0/stream = ExtResource("2_0vjau")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("3_7imnw")
+stream_1/volume = 0.0
+stream_2/stream = ExtResource("4_b4kh3")
+stream_2/volume = 0.0
+stream_3/stream = ExtResource("5_6glld")
+stream_3/volume = 0.0
+stream_4/stream = ExtResource("6_ly0ej")
+stream_4/volume = 0.0
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_eax1i")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamSynchronized_egx2w")
+playback_type = 2

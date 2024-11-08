@@ -1,11 +1,17 @@
 extends Node3D
 
-func _ready():
-	$AudioStreamPlayer2D.playing = true
-	var hm: AudioStreamSynchronized = $AudioStreamPlayer2D.stream
-	var kd: AudioStream = hm.get_sync_stream(0)
-	#hm.set_sync_stream(0, null)
-	var hein = true
+@onready var controller: Controller = $Controller
 
-func _on_audio_stream_player_2d_finished():
-	print("hm")
+func _process(_delta):
+	if Input.is_action_just_pressed("interact"):
+		controller.playing = true
+	
+	if Input.is_action_just_pressed("up_right_slot_press"):
+		var hm = SampleSpell.new()
+		if controller.get_free_clip() == 1:
+			hm.audio = load("res://sounds/sample_kits/ta_tendo_nao/guitarrinha1.mp3")
+		else:
+			hm.audio = null
+		controller.fill_sample_slot(hm, Controller.SampleSlot.UP_LEFT, controller.get_free_clip())
+		controller.toggle_clip()
+		

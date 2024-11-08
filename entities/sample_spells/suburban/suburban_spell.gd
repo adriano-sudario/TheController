@@ -1,0 +1,2 @@
+class_name SuburbanSpell
+extends Node2D

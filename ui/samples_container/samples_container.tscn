@@ -1,0 +1,136 @@
+[gd_scene load_steps=7 format=3 uid="uid://bj3d8fxmy3wff"]
+
+[ext_resource type="PackedScene" uid="uid://b3bu5lapf67ir" path="res://entities/sample_spells/sample_visualizer.tscn" id="1_1apwj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1vmm7"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.455817, 0.455817, 0.455817, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.299547, 0.299547, 0.299547, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yfhae"]
+bg_color = Color(0.125911, 0.125911, 0.125911, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.027451, 0.964706, 0.741176, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wrpcw"]
+bg_color = Color(0.125911, 0.125911, 0.125911, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.956863, 0.980392, 0.627451, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wbsdm"]
+bg_color = Color(0.125911, 0.125911, 0.125911, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.470588, 0.619608, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1n6g7"]
+bg_color = Color(0.125911, 0.125911, 0.125911, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.992157, 0.384314, 0.984314, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="SamplesContainer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SamplesPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -110.0
+offset_right = 110.0
+offset_bottom = 120.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1vmm7")
+
+[node name="SlotsContainer" type="VBoxContainer" parent="SamplesPanel"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="UpSlotsContainer" type="HBoxContainer" parent="SamplesPanel/SlotsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="UpLeftSlot" type="PanelContainer" parent="SamplesPanel/SlotsContainer/UpSlotsContainer"]
+custom_minimum_size = Vector2(95, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yfhae")
+
+[node name="SampleVisualizer" parent="SamplesPanel/SlotsContainer/UpSlotsContainer/UpLeftSlot" instance=ExtResource("1_1apwj")]
+position = Vector2(23, 12)
+color = Color(0.027451, 0.964706, 0.741176, 1)
+
+[node name="UpRightSlot" type="PanelContainer" parent="SamplesPanel/SlotsContainer/UpSlotsContainer"]
+custom_minimum_size = Vector2(95, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wrpcw")
+
+[node name="SampleVisualizer" parent="SamplesPanel/SlotsContainer/UpSlotsContainer/UpRightSlot" instance=ExtResource("1_1apwj")]
+position = Vector2(23, 12)
+color = Color(0.956863, 0.980392, 0.627451, 1)
+
+[node name="DownSlots" type="HBoxContainer" parent="SamplesPanel/SlotsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="DownLeftSlot" type="PanelContainer" parent="SamplesPanel/SlotsContainer/DownSlots"]
+custom_minimum_size = Vector2(95, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wbsdm")
+
+[node name="SampleVisualizer" parent="SamplesPanel/SlotsContainer/DownSlots/DownLeftSlot" instance=ExtResource("1_1apwj")]
+position = Vector2(23, 12)
+color = Color(0.470588, 0.619608, 1, 1)
+
+[node name="DownRightSlot" type="PanelContainer" parent="SamplesPanel/SlotsContainer/DownSlots"]
+custom_minimum_size = Vector2(95, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1n6g7")
+
+[node name="SampleVisualizer" parent="SamplesPanel/SlotsContainer/DownSlots/DownRightSlot" instance=ExtResource("1_1apwj")]
+position = Vector2(23, 12)
+color = Color(0.992157, 0.384314, 0.984314, 1)

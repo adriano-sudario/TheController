@@ -1,54 +1,51 @@
-[gd_scene load_steps=11 format=3 uid="uid://bvxgilh3dev40"]
+[gd_scene load_steps=9 format=3 uid="uid://b1ca37xp6ejqw"]
 
 [ext_resource type="Script" path="res://entities/controller/controller.gd" id="1_1us26"]
-[ext_resource type="AudioStream" uid="uid://bndbisfpttb0q" path="res://sounds/sample_kits/ta_tendo_nao/guitarrinha1.mp3" id="2_31f1v"]
 [ext_resource type="Script" path="res://entities/sample_spells/sample.gd" id="2_k4vbs"]
 [ext_resource type="AudioStream" uid="uid://bgn7si7iknrk4" path="res://sounds/sample_kits/ta_tendo_nao/707 core kit.mp3" id="3_gjws7"]
 [ext_resource type="AudioStream" uid="uid://ls75bx6vbg1j" path="res://sounds/sample_kits/ta_tendo_nao/canadian boards.mp3" id="4_l0027"]
 [ext_resource type="AudioStream" uid="uid://dhrn4f5kub365" path="res://sounds/sample_kits/ta_tendo_nao/guitarrinha2.mp3" id="5_gknb1"]
 [ext_resource type="AudioStream" uid="uid://j6gwpba2251i" path="res://sounds/sample_kits/ta_tendo_nao/suburban.mp3" id="6_7w4mc"]
 
-[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_u2lsi"]
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_ss3gt"]
 stream_count = 4
 stream_0/volume = 0.0
 stream_1/volume = 0.0
 stream_2/volume = 0.0
 stream_3/volume = 0.0
 
-[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_hq1si"]
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_ynld0"]
 stream_count = 4
-stream_0/stream = ExtResource("3_gjws7")
 stream_0/volume = 0.0
-stream_1/stream = ExtResource("2_31f1v")
 stream_1/volume = 0.0
 stream_2/volume = 0.0
 stream_3/volume = 0.0
 
-[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_wt76n"]
-clip_count = 2
-clip_0/name = &"a"
-clip_0/stream = SubResource("AudioStreamSynchronized_u2lsi")
-clip_0/auto_advance = 0
-clip_1/name = &"b"
-clip_1/stream = SubResource("AudioStreamSynchronized_hq1si")
-clip_1/auto_advance = 0
-
-[node name="Controller" type="AudioStreamPlayer2D"]
-stream = SubResource("AudioStreamInteractive_wt76n")
+[node name="Controller" type="Node"]
 script = ExtResource("1_1us26")
 
-[node name="SampleSpell" type="Node" parent="."]
+[node name="Spells" type="Node" parent="."]
+
+[node name="SampleSpell" type="Node" parent="Spells"]
 script = ExtResource("2_k4vbs")
 audio = ExtResource("3_gjws7")
+include_trigger_on_bar = 2
 
-[node name="SampleSpell2" type="Node" parent="."]
+[node name="SampleSpell2" type="Node" parent="Spells"]
 script = ExtResource("2_k4vbs")
 audio = ExtResource("4_l0027")
+include_trigger_on_bar = 4
 
-[node name="SampleSpell3" type="Node" parent="."]
+[node name="SampleSpell3" type="Node" parent="Spells"]
 script = ExtResource("2_k4vbs")
 audio = ExtResource("5_gknb1")
 
-[node name="SampleSpell4" type="Node" parent="."]
+[node name="SampleSpell4" type="Node" parent="Spells"]
 script = ExtResource("2_k4vbs")
 audio = ExtResource("6_7w4mc")
+
+[node name="AudioStreamPlayerA" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamSynchronized_ss3gt")
+
+[node name="AudioStreamPlayerB" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamSynchronized_ynld0")

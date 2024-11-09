@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://jsyassicq3fn"]
+[gd_scene load_steps=7 format=3 uid="uid://jsyassicq3fn"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_eax1i"]
-[ext_resource type="PackedScene" uid="uid://bvxgilh3dev40" path="res://entities/controller/controller.tscn" id="5_ehcgr"]
+[ext_resource type="PackedScene" uid="uid://b1ca37xp6ejqw" path="res://entities/controller/controller.tscn" id="5_ehcgr"]
+[ext_resource type="PackedScene" uid="uid://bj3d8fxmy3wff" path="res://ui/samples_container/samples_container.tscn" id="6_i1wmq"]
 [ext_resource type="Texture2D" uid="uid://dyc2vjhirfq1e" path="res://assets/sprites/backgrounds/void.png" id="7_5k37o"]
 [ext_resource type="PackedScene" uid="uid://c14r0fbecmutb" path="res://entities/characters/player/player.tscn" id="8_rqudl"]
 [ext_resource type="PackedScene" uid="uid://dkt1jbpkd1d85" path="res://entities/characters/dummy/dummy.tscn" id="9_falv5"]
@@ -26,3 +27,6 @@ position = Vector2(849, 482)
 position = Vector2(990, 98)
 
 [node name="Controller" parent="." instance=ExtResource("5_ehcgr")]
+
+[node name="SamplesContainer" parent="." instance=ExtResource("6_i1wmq")]
+unique_name_in_owner = true

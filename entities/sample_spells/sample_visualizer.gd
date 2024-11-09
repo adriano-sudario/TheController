@@ -12,12 +12,6 @@ var percent := 0.0:
 
 const POINTS_COUNT := 32
 
-func _process(delta):
-	percent += delta
-	
-	if percent >= 1.0:
-		percent = 0.0
-
 func draw_circle_sample_visualizer():
 	var angle_from = initial_angle_point
 	var angle_to = initial_angle_point + (360 * percent)

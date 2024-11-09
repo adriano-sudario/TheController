@@ -113,24 +113,24 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_wrpcw")
 position = Vector2(23, 12)
 color = Color(0.956863, 0.980392, 0.627451, 1)
 
-[node name="DownSlots" type="HBoxContainer" parent="SamplesPanel/SlotsContainer"]
+[node name="DownSlotsContainer" type="HBoxContainer" parent="SamplesPanel/SlotsContainer"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="DownLeftSlot" type="PanelContainer" parent="SamplesPanel/SlotsContainer/DownSlots"]
+[node name="DownLeftSlot" type="PanelContainer" parent="SamplesPanel/SlotsContainer/DownSlotsContainer"]
 custom_minimum_size = Vector2(95, 50)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_wbsdm")
 
-[node name="SampleVisualizer" parent="SamplesPanel/SlotsContainer/DownSlots/DownLeftSlot" instance=ExtResource("1_1apwj")]
+[node name="SampleVisualizer" parent="SamplesPanel/SlotsContainer/DownSlotsContainer/DownLeftSlot" instance=ExtResource("1_1apwj")]
 position = Vector2(23, 12)
 color = Color(0.470588, 0.619608, 1, 1)
 
-[node name="DownRightSlot" type="PanelContainer" parent="SamplesPanel/SlotsContainer/DownSlots"]
+[node name="DownRightSlot" type="PanelContainer" parent="SamplesPanel/SlotsContainer/DownSlotsContainer"]
 custom_minimum_size = Vector2(95, 50)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1n6g7")
 
-[node name="SampleVisualizer" parent="SamplesPanel/SlotsContainer/DownSlots/DownRightSlot" instance=ExtResource("1_1apwj")]
+[node name="SampleVisualizer" parent="SamplesPanel/SlotsContainer/DownSlotsContainer/DownRightSlot" instance=ExtResource("1_1apwj")]
 position = Vector2(23, 12)
 color = Color(0.992157, 0.384314, 0.984314, 1)

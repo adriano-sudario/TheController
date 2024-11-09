@@ -46,7 +46,25 @@ func get_free_stream():
 	
 	return Stream.A
 
+func get_visualizer(slot: SampleSlot) -> SampleVisualizer:
+	var path_prefix := ""
+	
+	match (slot):
+		SampleSlot.UP_LEFT:
+			path_prefix = "SamplesPanel/SlotsContainer/UpSlotsContainer/UpLeftSlot"
+		SampleSlot.UP_RIGHT:
+			path_prefix = "SamplesPanel/SlotsContainer/UpSlotsContainer/UpRightSlot"
+		SampleSlot.DOWN_LEFT:
+			path_prefix = "SamplesPanel/SlotsContainer/DownSlotsContainer/DownLeftSlot"
+		SampleSlot.DOWN_RIGHT:
+			path_prefix = "SamplesPanel/SlotsContainer/DownSlotsContainer/DownRightSlot"
+	
+	var visualizer = %SamplesContainer.get_node("%s/SampleVisualizer" % path_prefix)
+	return visualizer as SampleVisualizer
+
 func fill_sample_slot(sample: SampleSpell, slot: SampleSlot, stream: Stream = Stream.NULL):
+	sample.visualizer = get_visualizer(slot)
+	sample.controller = self
 	var audio_stream = null
 	
 	if sample != null:

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bj3d8fxmy3wff" path="res://ui/samples_container/samples_container.tscn" id="6_i1wmq"]
 [ext_resource type="Texture2D" uid="uid://dyc2vjhirfq1e" path="res://assets/sprites/backgrounds/void.png" id="7_5k37o"]
 [ext_resource type="PackedScene" uid="uid://c14r0fbecmutb" path="res://entities/characters/player/player.tscn" id="8_rqudl"]
-[ext_resource type="PackedScene" uid="uid://dkt1jbpkd1d85" path="res://entities/characters/dummy/dummy.tscn" id="9_falv5"]
+[ext_resource type="PackedScene" uid="uid://dkt1jbpkd1d85" path="res://entities/characters/enemies/dummy/dummy.tscn" id="9_falv5"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_eax1i")

@@ -9,6 +9,8 @@ signal beat_changed(beat_count: float)
 @export var bpm := 120
 
 var current_beat := 0
+var current_beat_float := 0.0
+var current_percent_between_beats := 0.0
 var beat_count := 0
 var samples: Array[SampleSpell] = []
 var current_stream := Stream.A:
@@ -33,6 +35,8 @@ var current_stream := Stream.A:
 @onready var sync_stream_b: AudioStreamSynchronized = audio_stream_player_b.stream
 @onready var current_sync_stream := sync_stream_a
 @onready var current_audio_stream := audio_stream_player_a
+@onready var level := get_parent()
+@onready var player: Player = level.get_node("Player")
 
 func get_free_audio_stream():
 	if current_audio_stream == audio_stream_player_b:
@@ -65,6 +69,7 @@ func get_visualizer(slot: SampleSlot) -> SampleVisualizer:
 func fill_sample_slot(sample: SampleSpell, slot: SampleSlot, stream: Stream = Stream.NULL):
 	sample.visualizer = get_visualizer(slot)
 	sample.controller = self
+	sample.controller_slot = slot
 	var audio_stream = null
 	
 	if sample != null:
@@ -95,14 +100,20 @@ func stop():
 			sample_spell.current_beat = 0
 			sample_spell.cicle_count = 0
 
-func get_current_beat() -> int:
-	return floor(current_audio_stream.get_playback_position() / beats_per_second)
+func get_current_beat(from_beat_float = null) -> int:
+	if from_beat_float == null:
+		return floor(current_audio_stream.get_playback_position() / beats_per_second)
+	else:
+		return floor(from_beat_float)
 
 func get_current_beat_float() -> float:
 	return current_audio_stream.get_playback_position() / beats_per_second
 
-func get_current_percent_between_beats() -> float:
-	return get_current_beat_float() - get_current_beat()
+func get_current_percent_between_beats(from_beat_float = null) -> float:
+	if from_beat_float == null:
+		return get_current_beat_float() - get_current_beat()
+	else:
+		return from_beat_float - get_current_beat(from_beat_float)
 
 func _ready():
 	var sample_slots = SampleSlot.values()
@@ -124,8 +135,13 @@ func _ready():
 	beat_changed.connect(func(_beat): Debug.show_message("tuntz", .25))
 
 func _process(_delta):
+	if not current_audio_stream.playing:
+		return
+	
 	var previous_beat = current_beat
-	current_beat = get_current_beat()
+	current_beat_float = get_current_beat_float()
+	current_percent_between_beats = get_current_percent_between_beats(current_beat_float)
+	current_beat = get_current_beat(current_beat_float)
 	
 	if current_beat != previous_beat:
 		beat_count += 1
@@ -142,3 +158,12 @@ func _process(_delta):
 			for trigger_beat in sample_spell.trigger_beats:
 				if sample_spell.current_beat == trigger_beat - 1:
 					sample_spell.triggered.emit(trigger_beat)
+					break
+	else:
+		for sample_spell in sample_spells:
+			for trigger_beat in sample_spell._trigger_beats_float:
+				var sample_beat_float = sample_spell.current_beat + current_percent_between_beats
+				
+				if sample_beat_float >= trigger_beat - 1:
+					sample_spell.triggered.emit(trigger_beat)
+					break

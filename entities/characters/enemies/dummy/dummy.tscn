@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://dkt1jbpkd1d85"]
+[gd_scene load_steps=10 format=3 uid="uid://dkt1jbpkd1d85"]
 
+[ext_resource type="Script" path="res://entities/characters/enemies/dummy/dummy.gd" id="1_8e277"]
 [ext_resource type="Texture2D" uid="uid://dd1yr3px4qrm8" path="res://assets/sprites/characters/dummy/hit/dummy_hit1.png" id="1_wayth"]
 [ext_resource type="Texture2D" uid="uid://c3qhbcsdskr02" path="res://assets/sprites/characters/dummy/hit/dummy_hit2.png" id="2_181od"]
 [ext_resource type="Texture2D" uid="uid://cekw0huutumj2" path="res://assets/sprites/characters/dummy/hit/dummy_hit3.png" id="3_bbsdg"]
@@ -25,7 +26,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("5_kx0ml")
 }],
-"loop": true,
+"loop": false,
 "name": &"hit",
 "speed": 10.0
 }, {
@@ -43,12 +44,14 @@ size = Vector2(11.3333, 32)
 
 [node name="Dummy" type="StaticBody2D"]
 scale = Vector2(3, 3)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_8e277")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_sg4qk")
-animation = &"idle"
+animation = &"hit"
 autoplay = "idle"
-frame_progress = 0.959341
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.33333, 8)

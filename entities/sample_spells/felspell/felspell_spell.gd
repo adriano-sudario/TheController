@@ -1,0 +1,2 @@
+class_name FelspellSpell
+extends Node2D

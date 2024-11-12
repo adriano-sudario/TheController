@@ -3,9 +3,10 @@ extends InputSampleSpell
 
 var fired_sunburn_projectiles: Array[SunburnProjectile]
 
+@onready var sunburn_resource := load("res://entities/sample_spells/suburban/sunburn_projectile.tscn")
+
 func _on_triggered(_trigger_beat):
-	var sunburn_projectile: SunburnProjectile = load(
-		"res://entities/sample_spells/suburban/sunburn_projectile.tscn").instantiate()
+	var sunburn_projectile: SunburnProjectile = sunburn_resource.instantiate()
 	var direction = Vector2(Input.get_joy_axis(0, JOY_AXIS_RIGHT_X), Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y))
 	sunburn_projectile.rotation = direction.angle()
 	sunburn_projectile.position = controller.player.global_position

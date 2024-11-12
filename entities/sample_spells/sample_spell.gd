@@ -16,6 +16,14 @@ var cicle_count := 0
 var _trigger_beats_float: Array[float] = []
 var _triggered_beats_float: Array[float] = []
 
+var is_armed := false:
+	set(value):
+		is_armed = value
+		visualizer.update_armed(is_armed)
+
+var is_playing:
+	get: return is_armed and controller.current_audio_stream.playing
+
 @onready var total_beats = audio.beat_count
 
 func _ready():
@@ -37,10 +45,10 @@ func _ready():
 				_trigger_beats_float.append(_triggered_beats_float[i])
 			_triggered_beats_float.clear())
 	
-	triggered.connect(func(beat): Debug.show_message("%s ~ %.2f" % [name, beat], .25))
+	#triggered.connect(func(beat): Debug.show_message("%s ~ %.2f" % [name, beat], .25))
 
 func _process(_delta):
-	if not controller.current_audio_stream.playing:
+	if not is_playing:
 		return
 	
 	var current_beat_float = current_beat + controller.get_current_percent_between_beats()

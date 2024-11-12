@@ -8,15 +8,7 @@ signal triggered_by_input()
 @export var input_trigger_threshold := 0.25
 
 func get_slot_action_name():
-	match (controller_slot):
-		Controller.SampleSlot.UP_LEFT:
-			return "up_left_slot_press"
-		Controller.SampleSlot.UP_RIGHT:
-			return "up_right_slot_press"
-		Controller.SampleSlot.DOWN_LEFT:
-			return "down_left_slot_press"
-		Controller.SampleSlot.DOWN_RIGHT:
-			return "down_right_slot_press"
+	return controller.get_slot_action_name(controller_slot)
 
 func has_input_press_succeeded() -> bool:
 	var beat = controller.current_beat_float
@@ -38,7 +30,7 @@ func _ready():
 func _process(delta):
 	super._process(delta)
 	
-	if not controller.current_audio_stream.playing:
+	if not is_playing and not Input.is_action_pressed("arm_toggle"):
 		return
 	
 	if Input.is_action_just_pressed(get_slot_action_name()) and has_input_press_succeeded():

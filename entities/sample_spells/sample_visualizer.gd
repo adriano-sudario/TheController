@@ -10,7 +10,18 @@ var percent := 0.0:
 		percent = value
 		queue_redraw()
 
+@onready var panel_container: PanelContainer = get_parent()
+
 const POINTS_COUNT := 32
+
+func update_armed(is_armed: bool):
+	await ready
+	
+	if not is_armed:
+		percent = 0.0
+		panel_container.modulate.a = 0.3
+	else:
+		panel_container.modulate.a = 1.0
 
 func draw_circle_sample_visualizer():
 	var angle_from = initial_angle_point

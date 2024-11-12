@@ -5,14 +5,17 @@ enum SampleSlot { UP_LEFT = 0, UP_RIGHT = 1, DOWN_LEFT = 2, DOWN_RIGHT = 3 }
 enum Stream { A = 0, B = 1, NULL = -1 }
 
 signal beat_changed(beat_count: float)
+signal bars_cicled(beat_count: float)
 
 @export var bpm := 120
+@export var bars := 4
 
 var current_beat := 0
 var current_beat_float := 0.0
 var current_percent_between_beats := 0.0
 var beat_count := 0
 var samples: Array[SampleSpell] = []
+var samples_to_toggle_arm: Array[SampleSpell] = []
 var current_stream := Stream.A:
 	set(value):
 		current_stream = value
@@ -26,6 +29,10 @@ var current_stream := Stream.A:
 			Stream.NULL:
 				current_sync_stream = null
 				current_audio_stream = null
+
+const SLOT_ACTIONS := [
+	"up_left_slot_press", "up_right_slot_press", "down_left_slot_press", "down_right_slot_press"
+]
 
 @onready var beats_per_second = 60.0 / bpm
 @onready var audio_stream_player_a: AudioStreamPlayer2D = $AudioStreamPlayerA
@@ -50,6 +57,12 @@ func get_free_stream():
 	
 	return Stream.A
 
+func get_sample_by_slot(slot: SampleSlot) -> SampleSpell:
+	return samples.filter(func(s: SampleSpell): return s.controller_slot == slot)[0]
+
+func get_slot_action_name(slot: SampleSlot):
+	return SLOT_ACTIONS[slot]
+
 func get_visualizer(slot: SampleSlot) -> SampleVisualizer:
 	var path_prefix := ""
 	
@@ -67,9 +80,6 @@ func get_visualizer(slot: SampleSlot) -> SampleVisualizer:
 	return visualizer as SampleVisualizer
 
 func fill_sample_slot(sample: SampleSpell, slot: SampleSlot, stream: Stream = Stream.NULL):
-	sample.visualizer = get_visualizer(slot)
-	sample.controller = self
-	sample.controller_slot = slot
 	var audio_stream = null
 	
 	if sample != null:
@@ -81,8 +91,27 @@ func fill_sample_slot(sample: SampleSpell, slot: SampleSlot, stream: Stream = St
 		Stream.B:
 			sync_stream_b.set_sync_stream(slot, audio_stream)
 		Stream.NULL:
+			sample.visualizer = get_visualizer(slot)
+			sample.controller = self
+			sample.controller_slot = slot
+			sample.is_armed = true
 			sync_stream_a.set_sync_stream(slot, audio_stream)
 			sync_stream_b.set_sync_stream(slot, audio_stream)
+
+func toggle_sample_armed(sample: SampleSpell):
+	set_sample_armed(sample, not sample.is_armed)
+
+func set_sample_armed(sample: SampleSpell, is_armed: bool):
+	sample.is_armed = is_armed
+	
+	if is_armed:
+		fill_sample_slot(sample, sample.controller_slot, get_free_stream())
+	else:
+		sample.current_beat = 0
+		sample.cicle_count = 0
+		fill_sample_slot(null, sample.controller_slot, get_free_stream())
+	
+	toggle_stream()
 
 func toggle_stream():
 	var current_position = current_audio_stream.get_playback_position()
@@ -131,12 +160,33 @@ func _ready():
 		fill_sample_slot(sample, index)
 		index += 1
 	
-	Debug.setup_node_variables(self, ["beat_count"])
-	beat_changed.connect(func(_beat): Debug.show_message("tuntz", .25))
+	Debug.setup_node_variables(self, ["beat_count", "current_stream"])
+	#beat_changed.connect(func(_beat): Debug.show_message("tuntz", .25))
+	bars_cicled.connect(func():
+		Debug.show_message("oxe kd", .25)
+		
+		if samples_to_toggle_arm.size() == 0:
+			return
+		
+		for sample in samples_to_toggle_arm:
+			toggle_sample_armed(sample)
+		
+		samples_to_toggle_arm.clear()
+		)
 
 func _process(_delta):
 	if not current_audio_stream.playing:
 		return
+	
+	if Input.is_action_pressed("arm_toggle"):
+		for i in range(SLOT_ACTIONS.size()):
+			if Input.is_action_just_pressed(get_slot_action_name(i)):
+				var sample = get_sample_by_slot(i)
+				
+				if samples_to_toggle_arm.has(sample):
+					samples_to_toggle_arm.erase(sample)
+				else:
+					samples_to_toggle_arm.append(sample)
 	
 	var previous_beat = current_beat
 	current_beat_float = get_current_beat_float()
@@ -146,6 +196,9 @@ func _process(_delta):
 	if current_beat != previous_beat:
 		beat_count += 1
 		beat_changed.emit(beat_count)
+		
+		if current_beat % bars == 0:
+			bars_cicled.emit()
 		
 		for sample_spell in sample_spells:
 			sample_spell.current_beat += 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1ca37xp6ejqw"]
+[gd_scene load_steps=8 format=3 uid="uid://b1ca37xp6ejqw"]
 
 [ext_resource type="Script" path="res://entities/controller/controller.gd" id="1_1us26"]
 [ext_resource type="Script" path="res://entities/sample_spells/sample_spell.gd" id="2_k4vbs"]
@@ -14,36 +14,24 @@ stream_1/volume = 0.0
 stream_2/volume = 0.0
 stream_3/volume = 0.0
 
-[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_ynld0"]
-stream_count = 4
-stream_0/volume = 0.0
-stream_1/volume = 0.0
-stream_2/volume = 0.0
-stream_3/volume = 0.0
-
 [node name="Controller" type="Node"]
 script = ExtResource("1_1us26")
 
-[node name="Spells" type="Node" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamSynchronized_ss3gt")
 
-[node name="SampleSpell" type="Node" parent="Spells"]
+[node name="SampleSpell" type="Node" parent="AudioStreamPlayer"]
 script = ExtResource("2_k4vbs")
 audio = ExtResource("3_gjws7")
 trigger_beats = Array[float]([1.0, 1.5, 2.0, 2.5, 3.5, 4.0, 5.0, 6.0, 7.5, 8.0, 8.5])
 
-[node name="SampleSpell2" type="Node" parent="Spells"]
+[node name="SampleSpell2" type="Node" parent="AudioStreamPlayer"]
 script = ExtResource("2_k4vbs")
 audio = ExtResource("4_l0027")
 include_trigger_on_bar = 4
 
-[node name="SampleSpell3" type="Node" parent="Spells"]
+[node name="SampleSpell3" type="Node" parent="AudioStreamPlayer"]
 script = ExtResource("2_k4vbs")
 audio = ExtResource("5_gknb1")
 
-[node name="SuburbanSpell" parent="Spells" instance=ExtResource("6_0tbqa")]
-
-[node name="AudioStreamPlayerA" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource("AudioStreamSynchronized_ss3gt")
-
-[node name="AudioStreamPlayerB" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource("AudioStreamSynchronized_ynld0")
+[node name="SuburbanSpell" parent="AudioStreamPlayer" instance=ExtResource("6_0tbqa")]

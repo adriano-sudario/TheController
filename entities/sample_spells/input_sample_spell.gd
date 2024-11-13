@@ -30,7 +30,7 @@ func _ready():
 func _process(delta):
 	super._process(delta)
 	
-	if not is_playing and not Input.is_action_pressed("arm_toggle"):
+	if not is_playing or Input.is_action_pressed("arm_toggle"):
 		return
 	
 	if Input.is_action_just_pressed(get_slot_action_name()) and has_input_press_succeeded():

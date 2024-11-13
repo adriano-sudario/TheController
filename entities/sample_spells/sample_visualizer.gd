@@ -15,13 +15,16 @@ var percent := 0.0:
 const POINTS_COUNT := 32
 
 func update_armed(is_armed: bool):
-	await ready
+	if panel_container == null:
+		await ready
+	
+	var style_box := panel_container.get_theme_stylebox("panel") as StyleBoxFlat
 	
 	if not is_armed:
 		percent = 0.0
-		panel_container.modulate.a = 0.3
+		style_box.border_color = Color.WHITE
 	else:
-		panel_container.modulate.a = 1.0
+		style_box.border_color = color
 
 func draw_circle_sample_visualizer():
 	var angle_from = initial_angle_point

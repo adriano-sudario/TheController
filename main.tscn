@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://jsyassicq3fn"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_eax1i"]
-[ext_resource type="Texture2D" uid="uid://sixk8w8y66x2" path="res://assets/texture_08.png" id="2_shv30"]
+[ext_resource type="Texture2D" uid="uid://bi3m2jj3wqxbq" path="res://assets/texture_07.png" id="2_vtqow"]
 [ext_resource type="PackedScene" uid="uid://bj3d8fxmy3wff" path="res://ui/samples_container/samples_container.tscn" id="6_i1wmq"]
 [ext_resource type="PackedScene" uid="uid://c14r0fbecmutb" path="res://entities/characters/player/player.tscn" id="8_rqudl"]
 [ext_resource type="PackedScene" uid="uid://dkt1jbpkd1d85" path="res://entities/characters/enemies/dummy/dummy.tscn" id="9_falv5"]
@@ -12,7 +12,7 @@ script = ExtResource("1_eax1i")
 [node name="BG" type="Sprite2D" parent="."]
 position = Vector2(577, 374)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("2_shv30")
+texture = ExtResource("2_vtqow")
 
 [node name="Dummy" parent="." instance=ExtResource("9_falv5")]
 position = Vector2(488, 219)

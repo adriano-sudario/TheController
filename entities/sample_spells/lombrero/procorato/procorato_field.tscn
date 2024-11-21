@@ -8,7 +8,6 @@ radius = 100.0
 
 [node name="ProcoratoField" type="Node2D"]
 script = ExtResource("1_oh0lh")
-damage = null
 
 [node name="ShockwaveDistortion" parent="." instance=ExtResource("1_l1l4j")]
 offset_left = -100.0

@@ -1,7 +1,8 @@
 class_name InputSampleSpell
 extends SampleSpell
 
-signal triggered_by_input(beat_pressed: float)
+signal missed()
+signal succeeded(beat_pressed: float)
 
 @export var input_trigger_beats: Array[float] = []
 @export var include_input_trigger_on_bar := 4
@@ -34,8 +35,11 @@ func _process(delta):
 	if not is_playing or Input.is_action_pressed("arm_toggle"):
 		return
 	
-	var input_pressed_on_beat = get_input_pressed_on_beat()
-	var has_input_press_succeeded = input_pressed_on_beat >= 0
-	
-	if Input.is_action_just_pressed(get_slot_action_name()) and has_input_press_succeeded:
-		triggered_by_input.emit(input_pressed_on_beat)
+	if Input.is_action_just_pressed(get_slot_action_name()):
+		var input_pressed_on_beat = get_input_pressed_on_beat()
+		var has_input_press_succeeded = input_pressed_on_beat >= 0
+		
+		if has_input_press_succeeded:
+			succeeded.emit(input_pressed_on_beat)
+		else:
+			missed.emit()

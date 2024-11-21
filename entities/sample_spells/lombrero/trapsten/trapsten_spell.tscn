@@ -12,5 +12,6 @@ audio = ExtResource("2_mj8uc")
 include_trigger_on_bar = 1
 total_beats = 32
 
+[connection signal="missed" from="." to="." method="_on_missed"]
+[connection signal="succeeded" from="." to="." method="_on_succeeded"]
 [connection signal="triggered" from="." to="." method="_on_triggered"]
-[connection signal="triggered_by_input" from="." to="." method="_on_triggered_by_input"]

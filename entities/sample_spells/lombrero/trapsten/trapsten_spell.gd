@@ -2,17 +2,21 @@ class_name TrapstenSpell
 extends InputSampleSpell
 
 @export var projectile: Resource
-@export var special_projectile: Resource
 
 var is_shooting_kunais := false
+var prevent_next_throw := false
 
 func _on_triggered(_trigger_beat):
+	if prevent_next_throw:
+		prevent_next_throw = false
+		return
+	
 	if not is_armed or is_shooting_kunais:
 		return
 	
 	spawn_projectile(TrapstenProjectile.TrapstenType.SHURIKEN)
 
-func _on_triggered_by_input(_trigger_beat):
+func _on_succeeded(_beat_pressed):
 	await get_tree().create_timer(controller.beats_per_second).timeout
 	
 	is_shooting_kunais = true
@@ -23,6 +27,9 @@ func _on_triggered_by_input(_trigger_beat):
 		await get_tree().create_timer(spawn_interval).timeout
 	
 	is_shooting_kunais = false
+
+func _on_missed():
+	prevent_next_throw = true
 
 func spawn_projectile(type: TrapstenProjectile.TrapstenType):
 	var trapsten_projectile: TrapstenProjectile = projectile.instantiate()

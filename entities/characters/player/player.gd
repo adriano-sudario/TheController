@@ -5,8 +5,22 @@ extends CharacterBody2D
 
 var direction := Vector2.ZERO
 var orientation := "down"
+var is_flipped:bool = false:
+	set(value):
+		var previous_value = is_flipped
+		is_flipped = value
+		animated_sprite.flip_h = is_flipped
+		
+		if previous_value == value:
+			return
+		
+		collision_shape.position.x = abs(collision_shape.position.x) * -sign(collision_shape.position.x)
+		controller.position.x = abs(controller.position.x) * -sign(controller.position.x)
+		#controller.sprite_2d.flip_h = is_flipped
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var controller: Controller = $Controller
 
 func _process(_delta):
 	direction = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down")).normalized()
@@ -30,29 +44,8 @@ func handle_move():
 
 func handle_animation():
 	if direction == Vector2.ZERO:
-		animated_sprite.play("idle_%s" % orientation)
+		animated_sprite.play("idle")
 		return
 	
-	orientation = get_direction_string(direction)
-	
-	if direction.x < 0:
-		animated_sprite.play("walk_%s" % orientation)
-	elif direction.x > 0:
-		animated_sprite.play("walk_%s" % orientation)
-	elif direction.y < 0:
-		animated_sprite.play("walk_%s" % orientation)
-	elif direction.y > 0:
-		animated_sprite.play("walk_%s" % orientation)
-
-func get_direction_string(_direction):
-	if _direction.x < 0:
-		return "left"
-	
-	if _direction.x > 0:
-		return "right"
-	
-	if _direction.y < 0:
-		return "up"
-	
-	if _direction.y > 0:
-		return "down"
+	animated_sprite.play("moving")
+	#is_flipped = direction.x < 0

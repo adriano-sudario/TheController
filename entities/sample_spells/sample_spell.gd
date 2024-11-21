@@ -4,9 +4,10 @@ extends Node
 signal triggered(trigger_beat: float)
 signal beat_cicle_completed
 
-@export var audio: AudioStreamMP3
+@export var audio: AudioStream
 @export var trigger_beats: Array[float] = []
 @export var include_trigger_on_bar := -1
+@export var total_beats: int
 
 var controller: Controller
 var controller_slot: Controller.SampleSlot
@@ -23,8 +24,6 @@ var is_armed := false:
 
 var is_playing:
 	get: return is_armed and controller.current_audio_stream.playing
-
-@onready var total_beats = audio.beat_count
 
 func _ready():
 	if include_trigger_on_bar > 0:

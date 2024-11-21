@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bevmi82cknjgc"]
+
+[ext_resource type="PackedScene" uid="uid://mbonjvyatbtu" path="res://vfxs/shockwave_distortion.tscn" id="1_l1l4j"]
+[ext_resource type="Script" path="res://entities/sample_spells/lombrero/procorato/procorato_field.gd" id="1_oh0lh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nf3nt"]
+radius = 100.0
+
+[node name="ProcoratoField" type="Node2D"]
+script = ExtResource("1_oh0lh")
+damage = null
+
+[node name="ShockwaveDistortion" parent="." instance=ExtResource("1_l1l4j")]
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_nf3nt")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

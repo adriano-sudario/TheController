@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4w3t57ky805o"]
+
+[ext_resource type="Script" path="res://entities/sample_spells/lombrero/trapsten/trapsten_spell.gd" id="1_aml64"]
+[ext_resource type="PackedScene" uid="uid://cke6153fw44p6" path="res://entities/sample_spells/lombrero/trapsten/trapsten_projectile.tscn" id="2_31k6f"]
+[ext_resource type="AudioStream" uid="uid://b2bm71elihu1" path="res://sounds/sample_kits/lombrero/trapsten_beat_01.wav" id="2_mj8uc"]
+
+[node name="TrapstenSpell" type="Node"]
+script = ExtResource("1_aml64")
+projectile = ExtResource("2_31k6f")
+include_input_trigger_on_bar = 8
+audio = ExtResource("2_mj8uc")
+include_trigger_on_bar = 1
+total_beats = 32
+
+[connection signal="triggered" from="." to="." method="_on_triggered"]
+[connection signal="triggered_by_input" from="." to="." method="_on_triggered_by_input"]

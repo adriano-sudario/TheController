@@ -3,6 +3,7 @@ extends Node2D
 
 @export var damage := 3.0
 @export var speed := 150.0
+@export var juicy_speed := 2
 
 var sample_spell: InputSampleSpell
 var has_exploded := false
@@ -10,9 +11,14 @@ var enemies_on_range := []
 var enemies_hit := []
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var current_scale := scale
+
+func _ready():
+	scale = Vector2.ZERO
 
 func _process(delta):
 	position += transform.x * speed * delta
+	scale = scale.lerp(Vector2.ONE * current_scale, delta * juicy_speed)
 
 func explode():
 	if has_exploded:
@@ -23,11 +29,7 @@ func explode():
 	has_exploded = true
 	
 	for enemy: Enemy in enemies_on_range:
-		if enemy is Dummy:
-			enemy.get_hit(0)
-		else:
-			enemy.get_hit(damage)
-		
+		enemy.get_hit(damage)
 		enemies_hit.append(enemy)
 
 func _on_area_2d_body_entered(body):

@@ -1,21 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://jsyassicq3fn"]
+[gd_scene load_steps=6 format=3 uid="uid://jsyassicq3fn"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_eax1i"]
-[ext_resource type="PackedScene" uid="uid://b1ca37xp6ejqw" path="res://entities/controller/controller.tscn" id="5_ehcgr"]
+[ext_resource type="Texture2D" uid="uid://sixk8w8y66x2" path="res://assets/texture_08.png" id="2_shv30"]
 [ext_resource type="PackedScene" uid="uid://bj3d8fxmy3wff" path="res://ui/samples_container/samples_container.tscn" id="6_i1wmq"]
-[ext_resource type="Texture2D" uid="uid://dyc2vjhirfq1e" path="res://assets/sprites/backgrounds/void.png" id="7_5k37o"]
 [ext_resource type="PackedScene" uid="uid://c14r0fbecmutb" path="res://entities/characters/player/player.tscn" id="8_rqudl"]
 [ext_resource type="PackedScene" uid="uid://dkt1jbpkd1d85" path="res://entities/characters/enemies/dummy/dummy.tscn" id="9_falv5"]
 
-[node name="Main" type="Node3D"]
+[node name="Main" type="Node2D"]
 script = ExtResource("1_eax1i")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(605, 312)
-texture = ExtResource("7_5k37o")
-
-[node name="Player" parent="." instance=ExtResource("8_rqudl")]
-position = Vector2(185, 306)
+[node name="BG" type="Sprite2D" parent="."]
+position = Vector2(577, 374)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_shv30")
 
 [node name="Dummy" parent="." instance=ExtResource("9_falv5")]
 position = Vector2(488, 219)
@@ -26,7 +23,19 @@ position = Vector2(849, 482)
 [node name="Dummy3" parent="." instance=ExtResource("9_falv5")]
 position = Vector2(990, 98)
 
-[node name="Controller" parent="." instance=ExtResource("5_ehcgr")]
+[node name="Player" parent="." instance=ExtResource("8_rqudl")]
+position = Vector2(185, 306)
 
 [node name="SamplesContainer" parent="." instance=ExtResource("6_i1wmq")]
 unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 0.0
+grow_vertical = 1
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Node2D" type="Node2D" parent="."]

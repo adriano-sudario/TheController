@@ -134,10 +134,8 @@ script = ExtResource("1_j7ggf")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_temel")
-animation = &"idle"
+animation = &"moving"
 autoplay = "idle"
-frame = 6
-frame_progress = 0.629639
 
 [node name="Controller" parent="." instance=ExtResource("4_xeh8h")]
 position = Vector2(15, 13.6667)

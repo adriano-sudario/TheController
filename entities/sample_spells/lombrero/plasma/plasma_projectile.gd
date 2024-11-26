@@ -1,4 +1,4 @@
-class_name SunburnProjectile
+class_name PlasmaProjectile
 extends Node2D
 
 @export var damage := 3.0
@@ -9,6 +9,16 @@ var sample_spell: InputSampleSpell
 var has_exploded := false
 var enemies_on_range := []
 var enemies_hit := []
+var beats_duration := 0.0
+var elapsed_beats := 0:
+	set(value):
+		if has_exploded:
+			return
+		
+		elapsed_beats = value
+		
+		if elapsed_beats >= beats_duration:
+			explode()
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var current_scale := scale
@@ -40,6 +50,3 @@ func _on_area_2d_body_entered(body):
 
 func _on_area_2d_body_exited(body):
 	enemies_on_range.erase(body)
-
-func _on_visible_on_screen_notifier_2d_screen_exited():
-	queue_free()

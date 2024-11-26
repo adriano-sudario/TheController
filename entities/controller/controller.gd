@@ -171,12 +171,6 @@ func handle_beats():
 					break
 
 func handle_inputs():
-	if Input.is_action_just_pressed("interact"):
-		if current_audio_stream.playing:
-			stop()
-		else:
-			current_audio_stream.play()
-	
 	if not current_audio_stream.playing:
 		return
 	

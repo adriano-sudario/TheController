@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://5deurglnoe6i" path="res://assets/sprites/characters/player/akai.png" id="2_jxik3"]
 [ext_resource type="Script" path="res://entities/sample_spells/sample_spell.gd" id="2_k4vbs"]
 [ext_resource type="PackedScene" uid="uid://c4w3t57ky805o" path="res://entities/sample_spells/lombrero/trapsten/trapsten_spell.tscn" id="3_0x2kw"]
-[ext_resource type="PackedScene" uid="uid://c0h6u2wu4kuhs" path="res://entities/sample_spells/lombrero/thunder_riff/thunder_riff_spell.tscn" id="4_p7n7a"]
+[ext_resource type="PackedScene" uid="uid://e7pp54v10qhg" path="res://entities/sample_spells/lombrero/plasma/plasma_spell.tscn" id="4_1i70h"]
 [ext_resource type="PackedScene" uid="uid://cwymf334k7loc" path="res://entities/sample_spells/lombrero/procorato/procorato_spell.tscn" id="5_e11n0"]
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_ss3gt"]
@@ -28,7 +28,7 @@ stream = SubResource("AudioStreamSynchronized_ss3gt")
 
 [node name="TrapstenSpell" parent="AudioStreamPlayer" instance=ExtResource("3_0x2kw")]
 
-[node name="ThunderRiffSpell" parent="AudioStreamPlayer" instance=ExtResource("4_p7n7a")]
+[node name="SuburbanSpell" parent="AudioStreamPlayer" instance=ExtResource("4_1i70h")]
 
 [node name="ProcoratoSpell" parent="AudioStreamPlayer" instance=ExtResource("5_e11n0")]
 

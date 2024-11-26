@@ -25,6 +25,14 @@ var is_flipped:bool = false:
 
 func _process(_delta):
 	direction = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down")).normalized()
+	
+	if Input.is_action_just_pressed("interact"):
+		if controller.current_audio_stream.playing:
+			controller.stop()
+			animated_sprite.speed_scale = 1.0
+		else:
+			controller.current_audio_stream.play()
+			animated_sprite.speed_scale = 0.0
 
 func _physics_process(_delta):
 	handle_move()
@@ -47,6 +55,27 @@ func handle_move():
 	move_and_slide()
 
 func handle_animation():
+	if controller.current_audio_stream.playing:
+		var current_percent_between_beats = controller.get_current_percent_between_beats()
+		var frames_count := 0
+		
+		if direction == Vector2.ZERO:
+			animated_sprite.play("idle")
+			frames_count = animated_sprite.sprite_frames.get_frame_count("idle")
+			animated_sprite.frame = floor(frames_count * current_percent_between_beats)
+			return
+		
+		animated_sprite.play("moving")
+		var current_beat = controller.get_current_beat()
+		frames_count = animated_sprite.sprite_frames.get_frame_count("moving")
+		var half_frames_count = int(frames_count / 2.0)
+		animated_sprite.frame = floor(half_frames_count * current_percent_between_beats)
+		
+		if current_beat % 2 != 0:
+			animated_sprite.frame += half_frames_count
+		
+		return
+	
 	if direction == Vector2.ZERO:
 		animated_sprite.play("idle")
 		return

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://e7pp54v10qhg"]
+
+[ext_resource type="Script" path="res://entities/sample_spells/lombrero/plasma/plasma_spell.gd" id="1_fme77"]
+[ext_resource type="PackedScene" uid="uid://b3q37a5usftkm" path="res://entities/sample_spells/lombrero/plasma/plasma_projectile.tscn" id="2_22g5e"]
+[ext_resource type="AudioStream" uid="uid://b6w5b0h7islal" path="res://sounds/sample_kits/lombrero/zoi_de_lula_01.wav" id="3_syvkl"]
+
+[node name="PlasmaSpell" type="Node"]
+script = ExtResource("1_fme77")
+projectile = ExtResource("2_22g5e")
+include_input_trigger_on_bar = 2
+audio = ExtResource("3_syvkl")
+include_trigger_on_bar = 2
+total_beats = 32
+
+[connection signal="missed" from="." to="." method="_on_missed"]
+[connection signal="succeeded" from="." to="." method="_on_succeeded"]
+[connection signal="triggered" from="." to="." method="_on_triggered"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cb3mhu0p3it5a"
-path="res://.godot/imported/slime.png-71d5c19b60bbd013db727d764932e91c.ctex"
+uid="uid://5deurglnoe6i"
+path="res://.godot/imported/akai.png-d8768cc6f6f350f7b3a315a9172751ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/characters/slime/slime.png"
-dest_files=["res://.godot/imported/slime.png-71d5c19b60bbd013db727d764932e91c.ctex"]
+source_file="res://assets/sprites/characters/player/akai.png"
+dest_files=["res://.godot/imported/akai.png-d8768cc6f6f350f7b3a315a9172751ff.ctex"]
 
 [params]
 

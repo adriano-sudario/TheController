@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @export var speed = 200.0
 
+var is_stunned := false
 var direction := Vector2.ZERO
 var orientation := "down"
 var is_flipped:bool = false:
@@ -30,6 +31,9 @@ func _physics_process(_delta):
 	handle_animation()
 
 func handle_move():
+	if is_stunned:
+		return
+	
 	if direction.x != 0:
 		velocity.x = direction.x * speed
 	else:

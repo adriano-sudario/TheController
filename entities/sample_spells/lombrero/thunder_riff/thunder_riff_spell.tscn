@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0h6u2wu4kuhs"]
+
+[ext_resource type="Script" path="res://entities/sample_spells/lombrero/thunder_riff/thunder_riff_spell.gd" id="1_hmqpq"]
+[ext_resource type="PackedScene" uid="uid://ddsldxl1q40h" path="res://entities/sample_spells/lombrero/thunder_riff/lightning_beam.tscn" id="2_w5pel"]
+[ext_resource type="AudioStream" uid="uid://bdob6l7r4aspb" path="res://sounds/sample_kits/lombrero/riff_do_trovão_01.wav" id="3_w6asp"]
+
+[node name="ThunderRiffSpell" type="Node"]
+script = ExtResource("1_hmqpq")
+projectile = ExtResource("2_w5pel")
+audio = ExtResource("3_w6asp")
+include_trigger_on_bar = 4
+total_beats = 32
+
+[node name="LightningBeam" parent="." instance=ExtResource("2_w5pel")]
+
+[connection signal="missed" from="." to="." method="_on_missed"]
+[connection signal="succeeded" from="." to="." method="_on_succeeded"]
+[connection signal="triggered" from="." to="." method="_on_triggered"]

@@ -36,6 +36,6 @@ func spawn_projectile(type: TrapstenProjectile.TrapstenType):
 	trapsten_projectile.global_position = controller.antenna_tip.global_position
 	trapsten_projectile.type = type
 	trapsten_projectile.target = NodeExtension.find_closest_node_to_point2d(
-		controller.level.enemies, trapsten_projectile.position)
+		controller.level.enemies, trapsten_projectile.global_position)
 	trapsten_projectile.sample_spell = self
 	controller.level.add_child(trapsten_projectile)

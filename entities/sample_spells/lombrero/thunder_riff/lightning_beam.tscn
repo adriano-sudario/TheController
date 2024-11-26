@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddsldxl1q40h"]
+
+[ext_resource type="Script" path="res://entities/sample_spells/lombrero/thunder_riff/lightning_beam.gd" id="1_shpfs"]
+
+[node name="LightningBeam" type="RayCast2D"]
+target_position = Vector2(600, 150)
+script = ExtResource("1_shpfs")
+flashes = 2

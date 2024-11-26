@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1ca37xp6ejqw"]
+[gd_scene load_steps=8 format=3 uid="uid://b1ca37xp6ejqw"]
 
 [ext_resource type="Script" path="res://entities/controller/controller.gd" id="1_1us26"]
 [ext_resource type="Texture2D" uid="uid://fnmmbdxctfoh" path="res://assets/sprites/characters/player/controller.png" id="2_53vld"]
 [ext_resource type="Script" path="res://entities/sample_spells/sample_spell.gd" id="2_k4vbs"]
 [ext_resource type="PackedScene" uid="uid://c4w3t57ky805o" path="res://entities/sample_spells/lombrero/trapsten/trapsten_spell.tscn" id="3_0x2kw"]
+[ext_resource type="PackedScene" uid="uid://c0h6u2wu4kuhs" path="res://entities/sample_spells/lombrero/thunder_riff/thunder_riff_spell.tscn" id="4_p7n7a"]
 [ext_resource type="PackedScene" uid="uid://cwymf334k7loc" path="res://entities/sample_spells/lombrero/procorato/procorato_spell.tscn" id="5_e11n0"]
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_ss3gt"]
@@ -27,9 +28,7 @@ stream = SubResource("AudioStreamSynchronized_ss3gt")
 
 [node name="TrapstenSpell" parent="AudioStreamPlayer" instance=ExtResource("3_0x2kw")]
 
-[node name="SampleSpell" type="Node" parent="AudioStreamPlayer"]
-script = ExtResource("2_k4vbs")
-trigger_beats = Array[float]([1.0, 1.5, 2.0, 2.5, 3.5, 4.0, 5.0, 6.0, 7.5, 8.0, 8.5])
+[node name="ThunderRiffSpell" parent="AudioStreamPlayer" instance=ExtResource("4_p7n7a")]
 
 [node name="ProcoratoSpell" parent="AudioStreamPlayer" instance=ExtResource("5_e11n0")]
 

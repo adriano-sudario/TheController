@@ -11,6 +11,9 @@ enum TrapstenType { SHURIKEN, KUNAI }
 var sample_spell: InputSampleSpell
 var target: Enemy
 var damage := 0.0
+var elapsed_time := 0.0
+var duration := 0.0
+var initial_position: Vector2
 
 @onready var sprite = $AnimatedSprite2D
 @onready var current_scale := scale
@@ -25,10 +28,18 @@ func _ready():
 			sprite.play("kunai")
 			look_at(target.global_position)
 	
-	var duration = sample_spell.controller.beats_per_second
-	create_tween().tween_property(self, "global_position", target.global_position, duration)
+	duration = sample_spell.controller.beats_per_second
+	initial_position = global_position
 
 func _process(delta):
+	elapsed_time += delta
+	global_position = Tween.interpolate_value(
+		initial_position, target.global_position - initial_position, elapsed_time, duration,
+		Tween.TransitionType.TRANS_LINEAR, Tween.EaseType.EASE_IN_OUT)
+	
+	if elapsed_time >= duration:
+		elapsed_time = 0.0
+	
 	if target == null or type == TrapstenType.KUNAI:
 		return
 	

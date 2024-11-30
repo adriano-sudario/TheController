@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://entities/controller/controller.gd" id="1_1us26"]
 [ext_resource type="Texture2D" uid="uid://5deurglnoe6i" path="res://assets/sprites/characters/player/akai.png" id="2_jxik3"]
-[ext_resource type="Script" path="res://entities/sample_spells/sample_spell.gd" id="2_k4vbs"]
 [ext_resource type="PackedScene" uid="uid://c4w3t57ky805o" path="res://entities/sample_spells/lombrero/trapsten/trapsten_spell.tscn" id="3_0x2kw"]
 [ext_resource type="PackedScene" uid="uid://e7pp54v10qhg" path="res://entities/sample_spells/lombrero/plasma/plasma_spell.tscn" id="4_1i70h"]
 [ext_resource type="PackedScene" uid="uid://cwymf334k7loc" path="res://entities/sample_spells/lombrero/procorato/procorato_spell.tscn" id="5_e11n0"]
+[ext_resource type="PackedScene" uid="uid://duafakfsgabfg" path="res://entities/sample_spells/lombrero/maciota/maciota.tscn" id="6_fpujy"]
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_ss3gt"]
 stream_count = 4
@@ -32,8 +32,7 @@ stream = SubResource("AudioStreamSynchronized_ss3gt")
 
 [node name="ProcoratoSpell" parent="AudioStreamPlayer" instance=ExtResource("5_e11n0")]
 
-[node name="SampleSpell3" type="Node" parent="AudioStreamPlayer"]
-script = ExtResource("2_k4vbs")
+[node name="Maciota" parent="AudioStreamPlayer" instance=ExtResource("6_fpujy")]
 
 [node name="AntennaTip" type="Marker2D" parent="."]
 position = Vector2(13, 1)

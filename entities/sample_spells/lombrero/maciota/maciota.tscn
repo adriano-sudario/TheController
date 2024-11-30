@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://duafakfsgabfg"]
+
+[ext_resource type="Script" path="res://entities/sample_spells/sample_spell.gd" id="1_omjq0"]
+[ext_resource type="AudioStream" uid="uid://b2i1xgncircva" path="res://sounds/sample_kits/lombrero/pad.wav" id="2_vri04"]
+
+[node name="Maciota" type="Node"]
+script = ExtResource("1_omjq0")
+audio = ExtResource("2_vri04")
+total_beats = 32

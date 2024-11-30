@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0f4xhc6m80h3"]
+
+[ext_resource type="Script" path="res://ui/sample_selection/sample_select_container.gd" id="1_126m4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xqnkj"]
+content_margin_left = 14.0
+content_margin_top = 14.0
+content_margin_right = 14.0
+content_margin_bottom = 14.0
+bg_color = Color(0.455817, 0.455817, 0.455817, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.299547, 0.299547, 0.299547, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="SampleSelectContainer" type="PanelContainer"]
+custom_minimum_size = Vector2(50, 50)
+theme_override_styles/panel = SubResource("StyleBoxFlat_xqnkj")
+script = ExtResource("1_126m4")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1

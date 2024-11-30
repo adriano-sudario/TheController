@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://cskd6n2h3uj88"]
+
+[ext_resource type="Script" path="res://ui/sample_selection/sample_selection.gd" id="1_56evb"]
+[ext_resource type="Script" path="res://ui/sample_selection/sample_select_resource.gd" id="2_13g6f"]
+
+[sub_resource type="Resource" id="Resource_2dbwy"]
+script = ExtResource("2_13g6f")
+description = "pcr"
+
+[sub_resource type="Resource" id="Resource_smix7"]
+script = ExtResource("2_13g6f")
+description = "tdr"
+
+[sub_resource type="Resource" id="Resource_roliv"]
+script = ExtResource("2_13g6f")
+description = "trt"
+
+[sub_resource type="Resource" id="Resource_4tl8n"]
+script = ExtResource("2_13g6f")
+description = "lbr"
+
+[sub_resource type="Resource" id="Resource_oqt5v"]
+script = ExtResource("2_13g6f")
+description = "cit"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xqnkj"]
+content_margin_left = 14.0
+content_margin_top = 14.0
+content_margin_right = 14.0
+content_margin_bottom = 14.0
+bg_color = Color(0.455817, 0.455817, 0.455817, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.299547, 0.299547, 0.299547, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="SampleSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_56evb")
+items = Array[ExtResource("2_13g6f")]([SubResource("Resource_2dbwy"), SubResource("Resource_smix7"), SubResource("Resource_roliv"), SubResource("Resource_4tl8n"), SubResource("Resource_oqt5v")])
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 361.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_xqnkj")
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer"]
+layout_mode = 2
+columns = 6

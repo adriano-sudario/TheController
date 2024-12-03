@@ -10,6 +10,7 @@ var is_selected := false
 var hovered_column := 0
 var hovered_row := 0
 var hovered_index := 0
+var loopitos := Loopitos.new()
 
 var hovered_container: SampleSelectContainer:
 	get(): return sample_select_containers[hovered_index]
@@ -21,14 +22,28 @@ var hovered_item: SampleSelectResource:
 @onready var grid_columns: int = grid_container.columns
 
 func _ready():
+	loopitos.bpm = 140
+	loopitos.tolerance = 0.25
+	loopitos.perfect_tolerance = 0.15
+	#loopitos.beat.connect(on_beat)
+	add_child(loopitos)
+	
 	for item in items:
 		var sample_select_container: SampleSelectContainer = load(
 			"res://ui/sample_selection/sample_select_container.tscn").instantiate()
 		sample_select_container.description = item.description
 		sample_select_container.selected_color = color
+		var sample_group := SampleGroup.new()
+		sample_group.description = item.description
+		sample_group.samples = [item.audio]
+		item.sample_group = sample_group
 		grid_container.add_child(sample_select_container)
 		sample_select_containers.append(sample_select_container)
+		loopitos.sample_groups.push_back(sample_group)
+		sample_group.initial_setup(loopitos)
 	
+	#add_child(loopitos)
+	loopitos.start()
 	hovered_container.is_hovered = true
 
 func _process(_delta):
@@ -46,6 +61,11 @@ func _process(_delta):
 	
 	if Input.is_action_just_pressed("interact"):
 		hovered_container.is_selected = not hovered_container.is_selected
+		
+		if hovered_container.is_selected:
+			hovered_item.sample_group.play()
+		else:
+			hovered_item.sample_group.stop()
 
 func hover_left():
 	if hovered_row - 1 < 0 and grid_columns == 0:

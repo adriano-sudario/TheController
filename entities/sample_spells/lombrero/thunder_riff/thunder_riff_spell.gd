@@ -8,9 +8,15 @@ extends InputSampleSpell
 @onready var lightning_beam: LightningBeam = $LightningBeam
 
 func _on_triggered(_trigger_beat):
+	if not is_armed:
+		return
+	
 	shoot_beam()
 
 func _on_succeeded(_beat_pressed):
+	if not is_armed:
+		return
+	
 	shoot_beam(additional_enemies_count_on_input_succeeded)
 
 func _on_missed():

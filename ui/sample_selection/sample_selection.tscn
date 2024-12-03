@@ -1,26 +1,36 @@
-[gd_scene load_steps=9 format=3 uid="uid://cskd6n2h3uj88"]
+[gd_scene load_steps=14 format=3 uid="uid://cskd6n2h3uj88"]
 
 [ext_resource type="Script" path="res://ui/sample_selection/sample_selection.gd" id="1_56evb"]
 [ext_resource type="Script" path="res://ui/sample_selection/sample_select_resource.gd" id="2_13g6f"]
+[ext_resource type="AudioStream" uid="uid://db4xyugg2pupl" path="res://sounds/sample_kits/lombrero/procorat_guitar_01.wav" id="3_b8ick"]
+[ext_resource type="AudioStream" uid="uid://bdob6l7r4aspb" path="res://sounds/sample_kits/lombrero/riff_do_trovão_01.wav" id="4_8l3en"]
+[ext_resource type="AudioStream" uid="uid://b23jg2k16udej" path="res://sounds/sample_kits/lombrero/trapsten_beat_02.wav" id="5_fixfm"]
+[ext_resource type="AudioStream" uid="uid://b6w5b0h7islal" path="res://sounds/sample_kits/lombrero/zoi_de_lula_01.wav" id="6_3865c"]
+[ext_resource type="AudioStream" uid="uid://b2i1xgncircva" path="res://sounds/sample_kits/lombrero/pad.wav" id="7_5ae1s"]
 
 [sub_resource type="Resource" id="Resource_2dbwy"]
 script = ExtResource("2_13g6f")
+audio = ExtResource("3_b8ick")
 description = "pcr"
 
 [sub_resource type="Resource" id="Resource_smix7"]
 script = ExtResource("2_13g6f")
+audio = ExtResource("4_8l3en")
 description = "tdr"
 
 [sub_resource type="Resource" id="Resource_roliv"]
 script = ExtResource("2_13g6f")
+audio = ExtResource("5_fixfm")
 description = "trt"
 
 [sub_resource type="Resource" id="Resource_4tl8n"]
 script = ExtResource("2_13g6f")
+audio = ExtResource("6_3865c")
 description = "lbr"
 
 [sub_resource type="Resource" id="Resource_oqt5v"]
 script = ExtResource("2_13g6f")
+audio = ExtResource("7_5ae1s")
 description = "cit"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xqnkj"]

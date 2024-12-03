@@ -5,11 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://c4w3t57ky805o" path="res://entities/sample_spells/lombrero/trapsten/trapsten_spell.tscn" id="3_0x2kw"]
 [ext_resource type="PackedScene" uid="uid://e7pp54v10qhg" path="res://entities/sample_spells/lombrero/plasma/plasma_spell.tscn" id="4_1i70h"]
 [ext_resource type="PackedScene" uid="uid://cwymf334k7loc" path="res://entities/sample_spells/lombrero/procorato/procorato_spell.tscn" id="5_e11n0"]
-[ext_resource type="PackedScene" uid="uid://duafakfsgabfg" path="res://entities/sample_spells/lombrero/maciota/maciota.tscn" id="6_fpujy"]
+[ext_resource type="PackedScene" uid="uid://c0h6u2wu4kuhs" path="res://entities/sample_spells/lombrero/thunder_riff/thunder_riff_spell.tscn" id="5_uab2h"]
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_ss3gt"]
 stream_count = 4
-stream_0/volume = 0.0
+stream_0/volume = 12.0
 stream_1/volume = 0.0
 stream_2/volume = 0.0
 stream_3/volume = 0.0
@@ -30,9 +30,9 @@ stream = SubResource("AudioStreamSynchronized_ss3gt")
 
 [node name="SuburbanSpell" parent="AudioStreamPlayer" instance=ExtResource("4_1i70h")]
 
-[node name="ProcoratoSpell" parent="AudioStreamPlayer" instance=ExtResource("5_e11n0")]
+[node name="ThunderRiffSpell" parent="AudioStreamPlayer" instance=ExtResource("5_uab2h")]
 
-[node name="Maciota" parent="AudioStreamPlayer" instance=ExtResource("6_fpujy")]
+[node name="ProcoratoSpell" parent="AudioStreamPlayer" instance=ExtResource("5_e11n0")]
 
 [node name="AntennaTip" type="Marker2D" parent="."]
 position = Vector2(13, 1)

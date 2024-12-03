@@ -25,6 +25,9 @@ func _on_triggered(_trigger_beat):
 	plasma_projectile.tree_exited.connect(func(): plasma_projectiles.erase(plasma_projectile))
 
 func _on_succeeded(_beat_pressed):
+	if not is_armed:
+		return
+	
 	for plasma in plasma_projectiles:
 		plasma.explode()
 

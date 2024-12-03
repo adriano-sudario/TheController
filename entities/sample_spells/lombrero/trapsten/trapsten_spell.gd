@@ -17,6 +17,9 @@ func _on_triggered(_trigger_beat):
 	spawn_projectile(TrapstenProjectile.TrapstenType.SHURIKEN)
 
 func _on_succeeded(_beat_pressed):
+	if not is_armed or is_shooting_kunais:
+		return
+	
 	await get_tree().create_timer(controller.beats_per_second).timeout
 	
 	is_shooting_kunais = true

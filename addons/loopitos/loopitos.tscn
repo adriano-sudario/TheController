@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjrsiftw4nm2x"]
+
+[ext_resource type="Script" path="res://addons/loopitos/loopitos.gd" id="1_w10f4"]
+[ext_resource type="Script" path="res://addons/loopitos/models/sample_group.gd" id="2_yjq36"]
+
+[sub_resource type="Resource" id="Resource_gqj80"]
+script = ExtResource("2_yjq36")
+description = ""
+samples = Array[AudioStream]([])
+volume = 1.0
+
+[node name="Loopitos" type="Node"]
+script = ExtResource("1_w10f4")
+sample_groups = Array[ExtResource("2_yjq36")]([SubResource("Resource_gqj80")])

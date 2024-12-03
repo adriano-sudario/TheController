@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 Debug="*res://entities/debug/debug.gd"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/loopitos/plugin.cfg")
+
 [input]
 
 toggle_debug_panel={
